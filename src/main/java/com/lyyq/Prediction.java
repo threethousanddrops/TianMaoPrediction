@@ -25,7 +25,7 @@ public class Prediction {
         protected void map(LongWritable key, Text value, Context context) 
                 throws IOException, InterruptedException {
             String line = value.toString();
-            String[] fields = line.split("\t");
+            String[] fields = line.split(",");
             if(fields[6].equals("1")||fields[6].equals("2")||fields[6].equals("3")){
                 item.set(fields[1]);
                 context.write(item, v);
