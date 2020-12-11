@@ -33,6 +33,7 @@ public class Prediction {
         }
     }
 
+
     public class WordCountReducer 
             extends Reducer<Text,IntWritable,Text,IntWritable>{
         IntWritable v = new IntWritable();
@@ -42,16 +43,15 @@ public class Prediction {
                 throws IOException, InterruptedException {
             int sum=0;
             for (IntWritable value : values) {
-
                 sum+=value.get();
             }
+ 
             String k=key.toString();
             map.put(k, sum);
         }
     
         @Override
-        protected void cleanup(Context context) 
-                throws IOException, InterruptedException {
+        protected void cleanup(Context context) throws IOException, InterruptedException {
             List<Map.Entry<String,Integer>> list=new LinkedList<Map.Entry<String,Integer>>(map.entrySet());
             Collections.sort(list, new Comparator<Map.Entry<String, Integer>>(){
                 @Override
@@ -59,7 +59,8 @@ public class Prediction {
                     return (int)(o2.getValue()-o1.getValue());
                 }
             });
-            for(int i=0;i<100;i++){
+            
+            for(int i=0;i<5;i++){
                 context.write(new Text(list.get(i).getKey()), new IntWritable(list.get(i).getValue()));
             }
         }    
