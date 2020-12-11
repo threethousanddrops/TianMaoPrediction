@@ -1,9 +1,6 @@
 package com.lyyq;
 
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 import java.util.*;
 
 import org.apache.hadoop.conf.Configuration;
@@ -26,10 +23,12 @@ public static class TokenizerMapper extends Mapper<Object, Text, Text, Text> {
     public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
         String line = value.toString();
         String[] fields = line.split(",");
-        if(fields[6].equals("1")||fields[6].equals("2")||fields[6].equals("3")){
-            this.word.set(fields[1]);
-            context.write(this.word, new Text("1"));
-        }
+        if(fields[5].equals("1111")){
+                if(fields[6].equals("1")||fields[6].equals("2")||fields[6].equals("3")){
+                this.word.set(fields[1]);
+                context.write(this.word, new Text("1"));
+            }
+        }      
     }
 }
 
