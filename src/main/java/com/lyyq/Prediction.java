@@ -76,8 +76,8 @@ public static class IntSumReducer extends Reducer<Text, Text, Text, Text> {
 
     GenericOptionsParser optionParser = new GenericOptionsParser(conf, args);
     String[] remainingArgs = optionParser.getRemainingArgs();
-    if (remainingArgs.length !=3) {
-      System.err.println("Usage: wordcount <in> <out> [-skip]");
+    if (remainingArgs.length !=2) {
+      System.err.println("Usage: wordcount <in> <out>");
       System.exit(2);
     } 
 
