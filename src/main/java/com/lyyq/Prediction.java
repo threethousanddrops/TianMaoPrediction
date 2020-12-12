@@ -40,7 +40,7 @@ public static class TokenizerMapper extends Mapper<Object, Text, Text, Text> {
         String[] fields = line.split(",");
         boolean flag=false;
         for(String pattern:patternsToskip){
-            pattern=pattern.replaceAll(","."");
+            pattern=pattern.replaceAll(",","");
             if(fields[0].equals(pattern)){
                 flag=true;
             }
